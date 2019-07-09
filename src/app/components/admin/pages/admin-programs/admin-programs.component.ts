@@ -51,7 +51,15 @@ export class AdminProgramsComponent implements OnInit, OnDestroy {
           extend: 'copy', text: 'Copy to clipboard'
         },
         { extend: 'print', text: 'Print' },
-        { extend: 'excel', text: 'Export to Excel' },
+        // tslint:disable-next-line:max-line-length
+        { 'extend': 'excel', 'text': '<button type="button" class="btn btn-primary btn-sm"> <i class="fa fa-file-excel-o"></i> Export to excel</button>' },
+        {
+          text: 'Create new order',
+          buttons: [{ className: 'btn-primary'}],
+          action: function ( e, dt, node, config ) {
+              alert( 'Button activated' );
+          }
+      }
       ]
     };
     this.loadAll();
