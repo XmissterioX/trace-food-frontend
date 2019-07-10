@@ -1,7 +1,7 @@
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
 import { DataTablesModule } from 'angular-datatables';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -21,6 +21,8 @@ import { LogincardComponent } from './components/logincard/logincard.component';
 
 import { DataService } from './data.service';
 import { HttpModule } from '@angular/http';
+import { SystemService } from './services/System.service';
+import { LogingoogleComponent } from './components/logingoogle/logingoogle.component';
 
 
 
@@ -37,15 +39,17 @@ import { HttpModule } from '@angular/http';
     AdminProgramsComponent,
     LoginComponent,
     LogincardComponent,
+    LogingoogleComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     DataTablesModule,
-    HttpModule
+    HttpModule,
+    FormsModule
   ],
-  providers: [DataService],
+  providers: [DataService, SystemService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

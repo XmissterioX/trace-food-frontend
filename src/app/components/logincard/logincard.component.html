@@ -1,3 +1,35 @@
- <a id="googleLogin"  >Log In</a>
-
- <!--href="http://localhost:3000/auth/google"-->
+<div class="loginWrapper">
+    <div class="logincard bg-white">
+       <div class="row">
+          <div class="col-lg-6 col-12">
+             <div class="leftbox">
+                <div class="circle"></div>
+                <div class="leftboxContent">
+                   <img src="http://www.clker.com/cliparts/6/4/3/d/1197099982421975713johnny_automatic_bushel_tomato_crate.svg.med.png" class="bgimg" alt="flower image">
+                   <h4>
+                      <img src="http://www.clker.com/cliparts/6/4/3/d/1197099982421975713johnny_automatic_bushel_tomato_crate.svg.med.png" class="img-fluid" alt="flower image">
+                      Trace-Food
+                   </h4>
+                   <h1 style="text-align: center">Upload your card </h1>
+                </div>
+              </div>
+          </div>
+          <div class="col-lg-6 col-12">
+             <div class="rightbox text-center">
+  
+                <img src="https://i.ibb.co/n7cQs3B/profile.jpg" class="rounded-circle" alt="profile image">
+                <p>Upload the card which was given to you by the administrator</p>
+                <label for="file" class="label-file" >Pick your card</label>
+                <input id="file" class="input-file" type="file" accept=".card" (change)="onFileSelected($event)">
+                <h5 *ngIf="!hidden" value="" style="color: darkgrey"><i class="fa fa-credit-card" style="margin-right: 1%"></i>{{selectedFile.name}}</h5>
+                <input *ngIf="!hidden" [(ngModel)]="password" autocomplete="off" type="password" name="name2" id="name" class="form-control" placeholder="Password"
+                aria-describedby="prefixId">
+                <button *ngIf="!hidden" type="submit" class="btn btn-primary" (click)="onUpload()">Upload</button>
+  
+             </div>
+          </div>
+       </div>
+    </div>
+  
+  
+  </div>

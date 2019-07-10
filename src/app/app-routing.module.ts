@@ -6,6 +6,7 @@ import { AdminProgramsComponent } from './components/admin/pages/admin-programs/
 
 import { LoginComponent } from './components/login/login.component';
 import { LogincardComponent } from './components/logincard/logincard.component';
+import { LogingoogleComponent } from './components/logingoogle/logingoogle.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,7 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'logincard', component: LogincardComponent },
+  { path: 'logingoogle', component: LogingoogleComponent },
   {
     path: '**',
     redirectTo: 'admin',

@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { } from 'jquery';
+import { SystemService } from 'src/app/services/System.service';
+
 
 
 @Component({
@@ -9,28 +10,31 @@ import { } from 'jquery';
 })
 export class LoginComponent implements OnInit, OnDestroy {
 
-  bodyClasses = 'skin-blue sidebar-mini';
-  body: HTMLBodyElement = document.getElementsByTagName('body')[0];
-  checkbox_icheck: HTMLElement = document.getElementById('checkbox_icheck');
+  private errorMessage;
 
-  constructor() { }
+  constructor(private systemService: SystemService) { }
 
   ngOnInit() {
-    // add the the body classes
-    this.body.classList.add('hold-transition');
-    this.body.classList.add('login-page');
-
-    // jQuery(this.checkbox_icheck).iCheck({
-    //   checkboxClass: 'icheckbox_square-blue',
-    //   radioClass: 'iradio_square-blue',
-    //   increaseArea: '20%' /* optional */
-    // });
+    this.Ping();
   }
 
    ngOnDestroy() {
-    // remove the the body classes
-    this.body.classList.remove('hold-transition');
-    this.body.classList.remove('login-page');
+
+  }
+
+  Ping() {
+    this.systemService.ping().subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {console.log(err);
+        if (err.status === 401) {
+          this.errorMessage = 'Authorization Required';
+        } else if (err.status === 500) {
+          this.errorMessage = 'A business network card has not been specified';
+        }
+      }
+    );
   }
 
 }

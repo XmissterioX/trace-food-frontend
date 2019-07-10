@@ -1,153 +1,197 @@
-*, ::after, ::before {
-    box-sizing: border-box;
-  }
-  
-  body {
-    background-color: #212121;
-    color: #fff;
-    font-family: monospace, serif;
-    letter-spacing: 0.05em;
-  }
-  
-  h1 {
-    font-size: 23px;
-  }
-  
-  .form {
-    width: 300px;
-    padding: 64px 15px 24px;
-    margin: 0 auto;
-  }
-  .form .control {
-    margin: 0 0 24px;
-  }
-  .form .control input {
-    width: 100%;
-    padding: 14px 16px;
-    border: 0;
-    background: transparent;
-    color: #fff;
-    font-family: monospace, serif;
-    letter-spacing: 0.05em;
-    font-size: 16px;
-  }
-  .form .control input:hover, .form .control input:focus {
-    outline: none;
-    border: 0;
-  }
-  .form .btn {
-    width: 100%;
-    display: block;
-    padding: 14px 16px;
-    background: transparent;
-    outline: none;
-    border: 0;
-    color: #fff;
-    letter-spacing: 0.1em;
-    font-weight: bold;
-    font-family: monospace;
-    font-size: 16px;
-  }
-  
-  .block-cube {
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Cinzel:400,700,900&display=swap");
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px !important;
+}
+
+.loginWrapper {
+  background: #f5f5f5;
+  position: relative;
+  height: 100vh;
+}
+.loginWrapper .logincard {
+  max-width: 970px;
+  width: 100%;
+  overflow: hidden;
+  height: 545px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.09);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.loginWrapper .logincard .leftbox {
+  position: relative;
+  z-index: 0;
+  height: 545px;
+}
+.loginWrapper .logincard .leftbox .circle {
+  position: absolute;
+  width: 750px;
+  height: 750px;
+  background: #367fa9;
+  top: 42%;
+  left: -55%;
+  transform: translatey(-50%) rotate(48deg);
+  border-radius: 300px;
+  box-shadow: inset 52px 49px 57px #3c8dbc;
+  border: 2px solid #f5f5f5;
+  z-index: -1;
+}
+.loginWrapper .logincard .leftbox .leftboxContent {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 65%;
+}
+.loginWrapper .logincard .leftbox .leftboxContent img.bgimg {
+  width: 500px;
+  position: absolute;
+  opacity: 0.2;
+  top: -18%;
+  left: -73%;
+}
+.loginWrapper .logincard .leftbox .leftboxContent h4 {
+  color: #fff;
+  font-weight: 900;
+  font-size: 20px;
+  margin-bottom: 25px;
+}
+.loginWrapper .logincard .leftbox .leftboxContent h4 img {
+  width: 25px;
+  margin-top: -5px;
+}
+.loginWrapper .logincard .leftbox .leftboxContent h1 {
+  color: #fff;
+  font-weight: 500;
+  font-size: 25px;
+}
+.loginWrapper .logincard .rightbox {
+  position: relative;
+  height: 545px;
+  padding: 50px;
+}
+.loginWrapper .logincard .rightbox img {
+  width: 120px;
+  height: 120px;
+}
+.loginWrapper .logincard .rightbox p {
+  font-weight: 600;
+  color: #777777;
+  margin: 15px 0;
+}
+.loginWrapper .logincard .rightbox p a {
+  color: #ff7467;
+}
+.loginWrapper .logincard .rightbox p input[type="checkbox"] {
+  width: 0px;
+  height: 0px;
+}
+.loginWrapper .logincard .rightbox p input[type="checkbox"]:checked ~ label:after {
+  display: block;
+}
+.loginWrapper .logincard .rightbox p label {
+  width: 18px;
+  height: 18px;
+  background: #F3F6FB;
+  border-radius: 2px;
+  border: 2px solid #ebf0f7;
+  position: relative;
+  margin: 0 10px 0 0;
+}
+.loginWrapper .logincard .rightbox p label:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 5px;
+  top: 1px;
+  width: 5px;
+  height: 10px;
+  border: solid #3c8dbc;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.loginWrapper .logincard .rightbox input[type="email"],
+.loginWrapper .logincard .rightbox input[type="password"] {
+  border-radius: 25px;
+  background: #F3F6FB;
+  border: 1px solid #ebf0f7;
+  height: 47px;
+  margin-bottom: 25px;
+}
+.loginWrapper .logincard .rightbox input[type="email"]:focus,
+.loginWrapper .logincard .rightbox input[type="password"]:focus {
+  border-color: #3c8dbc;
+  box-shadow: none;
+}
+.loginWrapper .logincard .rightbox button {
+  background: linear-gradient(15deg, #367fa9, #4ea4d6);
+  border: 2px solid #fff;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.37);
+  display: block;
+  width: 100%;
+  height: 47px;
+  font-weight: 600;
+  border-radius: 30px;
+}
+.loginWrapper .logincard .rightbox button:hover, .loginWrapper .logincard .rightbox button:focus, .loginWrapper .logincard .rightbox button:active {
+  background: linear-gradient(15deg, #4ea4d6, #367fa9);
+  border: 2px solid #fff;
+  outline: 0 none;
+  box-shadow: none !important;
+}
+
+@media only screen and (max-width: 991px) {
+  .loginWrapper .logincard {
     position: relative;
+    transform: inherit;
+    top: inherit;
+    left: inherit;
+    height: auto;
   }
-  .block-cube .bg-top {
-    position: absolute;
-    height: 10px;
-    background: #020024;
-    background: linear-gradient(90deg, #020024 0%, #340979 37%, #00d4ff 94%);
-    bottom: 100%;
-    left: 5px;
-    right: -5px;
-    transform: skew(-45deg, 0);
-    margin: 0;
+
+  .loginWrapper .logincard .leftbox {
+    height: auto;
   }
-  .block-cube .bg-top .bg-inner {
-    bottom: 0;
-  }
-  .block-cube .bg {
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    background: #020024;
-    background: linear-gradient(90deg, #020024 0%, #340979 37%, #00d4ff 94%);
-  }
-  .block-cube .bg-right {
-    position: absolute;
-    background: #020024;
-    background: #00d4ff;
-    top: -5px;
-    z-index: 0;
-    bottom: 5px;
-    width: 10px;
-    left: 100%;
-    transform: skew(0, -45deg);
-  }
-  .block-cube .bg-right .bg-inner {
-    left: 0;
-  }
-  .block-cube .bg .bg-inner {
-    transition: all 0.2s ease-in-out;
-  }
-  .block-cube .bg-inner {
-    background: #212121;
-    position: absolute;
-    left: 2px;
-    top: 2px;
-    right: 2px;
-    bottom: 2px;
-  }
-  .block-cube .text {
-    position: relative;
-    z-index: 2;
-  }
-  .block-cube.block-input input {
-    position: relative;
-    z-index: 2;
-  }
-  .block-cube.block-input input:focus ~ .bg-right .bg-inner, .block-cube.block-input input:focus ~ .bg-top .bg-inner, .block-cube.block-input input:focus ~ .bg-inner .bg-inner {
-    top: 100%;
-    background: rgba(255, 255, 255, 0.5);
-  }
-  .block-cube.block-input .bg-top,
-  .block-cube.block-input .bg-right,
-  .block-cube.block-input .bg {
-    background: rgba(255, 255, 255, 0.5);
-    transition: background 0.2s ease-in-out;
-  }
-  .block-cube.block-input .bg-right .bg-inner,
-  .block-cube.block-input .bg-top .bg-inner {
-    transition: all 0.2s ease-in-out;
-  }
-  .block-cube.block-input:focus .bg-top,
-  .block-cube.block-input:focus .bg-right,
-  .block-cube.block-input:focus .bg, .block-cube.block-input:hover .bg-top,
-  .block-cube.block-input:hover .bg-right,
-  .block-cube.block-input:hover .bg {
-    background: rgba(255, 255, 255, 0.8);
-  }
-  .block-cube.block-cube-hover:focus .bg .bg-inner, .block-cube.block-cube-hover:hover .bg .bg-inner {
-    top: 100%;
-  }
-  
-  .credits {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    padding: 15px 15px;
+
+  .loginWrapper .logincard .leftbox .circle {
+    transform: inherit;
+    border-radius: inherit;
+    top: inherit;
+    left: inherit;
+    border: 0 none;
     width: 100%;
-    z-index: 111;
   }
-  .credits a {
-    opacity: 0.6;
+
+  .loginWrapper .logincard .leftbox .leftboxContent {
+    position: inherit;
+    top: inherit;
+    left: inherit;
+    transform: inherit;
+    width: 100%;
+    padding: 40px 40px 0;
+    text-align: center;
+  }
+
+  .loginWrapper .logincard .rightbox input[type="email"],
+  .loginWrapper .logincard .rightbox input[type="password"] {
+    background: #fff;
+  }
+
+  .loginWrapper .logincard .rightbox p {
     color: #fff;
-    font-size: 11px;
-    text-decoration: none;
   }
-  .credits a:hover {
-    opacity: 1;
+
+  .loginWrapper .logincard .leftbox .leftboxContent img.bgimg {
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
-  
+}
