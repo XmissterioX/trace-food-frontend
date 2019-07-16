@@ -22,7 +22,8 @@ uploadCard(selectedFile: File, password: string): Observable<any> {
     const fd = new FormData();
     fd.append('card', selectedFile);
 
-    return this.httpClient.post(this.baseUrl + '/wallet/import?name=' + password, fd, {withCredentials: true, headers, });
+    // tslint:disable-next-line:max-line-length
+    return this.httpClient.post(this.baseUrl + '/wallet/import?name=' + password, fd, {withCredentials: true, headers, observe: 'response' });
     }
 
 }

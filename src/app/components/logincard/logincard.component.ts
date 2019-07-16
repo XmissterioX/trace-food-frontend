@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SystemService } from 'src/app/services/System.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-logincard',
@@ -9,8 +10,10 @@ import { SystemService } from 'src/app/services/System.service';
 export class LogincardComponent implements OnInit {
   selectedFile = null;
   hidden = true;
-  password: string;
-  constructor(private systemService: SystemService) {
+  name: string;
+  private errorMessage;
+  constructor(private systemService: SystemService,
+    private route: Router) {
   }
 
   ngOnInit() {
@@ -24,11 +27,13 @@ export class LogincardComponent implements OnInit {
 
   onUpload() {
 
-    if (this.password.length > 0 && this.selectedFile != null) {
+    if (this.name.length > 0 && this.selectedFile != null) {
         // this.loading = true;
-  this.systemService.uploadCard(this.selectedFile, this.password).subscribe(res => {
+  this.systemService.uploadCard(this.selectedFile, this.name).subscribe(res => {
     // this.loading = false;
     console.log(res);
+    console.log(res.status + res.statusText);
+   this.ping();
 
   },
   err => {console.log(err);
@@ -37,5 +42,29 @@ export class LogincardComponent implements OnInit {
       } else {
        console.log('enter your password');
       }
+  }
+
+  ping() {
+    this.systemService.ping().subscribe(
+      res => {
+        console.log(res);
+        let str = res['participant'];
+        console.log(str);
+        str = str.substring(str.indexOf('#') + 1);
+        console.log(str);
+        if (str.startsWith('S1')) {
+          this.route.navigate(['/supplier']);
+        } else if (str.startsWith('R1')) {
+          this.route.navigate(['/restaurant']);
+        } else {console.log(false); }
+      },
+      err => {console.log(err);
+        if (err.status === 401) {
+          this.errorMessage = 'Authorization Required';
+        } else if (err.status === 500) {
+          this.errorMessage = 'A business network card has not been specified';
+        }
+      }
+    );
   }
 }

@@ -1,4 +1,6 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
+import { SystemService } from 'src/app/services/System.service';
+import { Router } from '@angular/router';
 declare const gapi: any;
 @Component({
   selector: 'app-logingoogle',
@@ -7,8 +9,12 @@ declare const gapi: any;
 })
 export class LogingoogleComponent implements OnInit {
 
-  constructor(private element: ElementRef) {
-    console.log('ElementRef: ', this.element);
+  private errorMessage;
+
+  constructor(private element: ElementRef,
+    private systemService: SystemService,
+    private route: Router) {
+   // console.log('ElementRef: ', this.element);
   }
   private clientId = '660493171209-vkfbm3homdthk5rb00pdtapc9anb0ai9.apps.googleusercontent.com';
   private scope = [
@@ -29,7 +35,6 @@ export class LogingoogleComponent implements OnInit {
     });
   }
   public attachSignin(element) {
-    console.log('hi');
     this.auth2.attachClickHandler(element, {},
       (googleUser) => {
         console.log('test');
@@ -42,7 +47,8 @@ export class LogingoogleComponent implements OnInit {
         // YOUR CODE HERE
         window.location.href = 'http://localhost:3000/auth/google';
       }, (error) => {
-        alert(JSON.stringify(error, undefined, 2));
+      //  alert(JSON.stringify(error, undefined, 2));
+      alert('You must choose an account in order proceed');
       });
   }
 
@@ -90,12 +96,38 @@ export class LogingoogleComponent implements OnInit {
 
   ngOnInit() {
    // this.a =  this.getCookie('access_token');
+   this.ping();
   }
 
   // tslint:disable-next-line:use-life-cycle-interface
   ngAfterViewInit(): void {
     this.googleInit();
 
+  }
+
+  ping() {
+    this.systemService.ping().subscribe(
+      res => {
+        console.log(res);
+        let str = res['participant'];
+        console.log(str);
+        str = str.substring(str.indexOf('#') + 1);
+        console.log(str);
+        if (str.startsWith('S1')) {
+          this.route.navigate(['/supplier']);
+        } else if (str.startsWith('R1')) {
+          this.route.navigate(['/restaurant']);
+        } else {console.log(false); }
+      },
+      err => {console.log(err);
+        if (err.status === 401) {
+          this.errorMessage = 'Authorization Required';
+        } else if (err.status === 500) {
+          this.route.navigate(['/logincard']);
+          this.errorMessage = 'A business network card has not been specified';
+        }
+      }
+    );
   }
 
 

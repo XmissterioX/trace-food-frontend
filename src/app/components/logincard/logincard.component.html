@@ -22,7 +22,7 @@
                 <label for="file" class="label-file" >Pick your card</label>
                 <input id="file" class="input-file" type="file" accept=".card" (change)="onFileSelected($event)">
                 <h5 *ngIf="!hidden" value="" style="color: darkgrey"><i class="fa fa-credit-card" style="margin-right: 1%"></i>{{selectedFile.name}}</h5>
-                <input *ngIf="!hidden" [(ngModel)]="password" autocomplete="off" type="password" name="name2" id="name" class="form-control" placeholder="Password"
+                <input *ngIf="!hidden" [(ngModel)]="name" autocomplete="off" type="text" name="name2" id="name" class="form-control" placeholder="Card name"
                 aria-describedby="prefixId">
                 <button *ngIf="!hidden" type="submit" class="btn btn-primary" (click)="onUpload()">Upload</button>
   

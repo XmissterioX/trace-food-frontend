@@ -15,17 +15,24 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(private systemService: SystemService) { }
 
   ngOnInit() {
-    this.Ping();
+    this.ping();
   }
 
    ngOnDestroy() {
 
   }
 
-  Ping() {
+  ping() {
     this.systemService.ping().subscribe(
       res => {
         console.log(res);
+        let str = res['participant'];
+        console.log(str);
+        str = str.substring(str.indexOf('#') + 1);
+        console.log(str);
+        if (str.startsWith('S1')) {
+          console.log('true');
+        } else {console.log(false); }
       },
       err => {console.log(err);
         if (err.status === 401) {

@@ -23,6 +23,20 @@ import { DataService } from './data.service';
 import { HttpModule } from '@angular/http';
 import { SystemService } from './services/System.service';
 import { LogingoogleComponent } from './components/logingoogle/logingoogle.component';
+import { SupplierComponent } from './components/supplier/supplier.component';
+import { SupplierDashboardComponent } from './components/supplier/pages/supplier-dashboard/supplier-dashboard.component';
+import { ControlSidebarSupplierComponent } from './components/supplier/control-sidebar-supplier/control-sidebar-supplier.component';
+import { FooterSupplierComponent } from './components/supplier/footer-supplier/footer-supplier.component';
+import { HeaderSupplierComponent } from './components/supplier/header-supplier/header-supplier.component';
+import { LeftSideSupplierComponent } from './components/supplier/left-side-supplier/left-side-supplier.component';
+import { RestaurantComponent } from './components/restaurant/restaurant.component';
+import { ControlSidebarRestaurantComponent } from './components/restaurant/control-sidebar-restaurant/control-sidebar-restaurant.component';
+import { FooterRestaurantComponent } from './components/restaurant/footer-restaurant/footer-restaurant.component';
+import { HeaderRestaurantComponent } from './components/restaurant/header-restaurant/header-restaurant.component';
+import { LeftSidebarRestaurantComponent } from './components/restaurant/left-sidebar-restaurant/left-sidebar-restaurant.component';
+import { RestaurantDashboardComponent } from './components/restaurant/restaurant-dashboard/restaurant-dashboard.component';
+import { OrdersSupplierComponent } from './components/supplier/pages/orders-supplier/orders-supplier.component';
+import { OrderService } from './services/Order.service';
 
 
 
@@ -39,7 +53,20 @@ import { LogingoogleComponent } from './components/logingoogle/logingoogle.compo
     AdminProgramsComponent,
     LoginComponent,
     LogincardComponent,
-    LogingoogleComponent
+    LogingoogleComponent,
+    SupplierComponent,
+    SupplierDashboardComponent,
+    ControlSidebarSupplierComponent,
+    FooterSupplierComponent,
+    HeaderSupplierComponent,
+    LeftSideSupplierComponent,
+    RestaurantComponent,
+    ControlSidebarRestaurantComponent,
+    FooterRestaurantComponent,
+    HeaderRestaurantComponent,
+    LeftSidebarRestaurantComponent,
+    RestaurantDashboardComponent,
+    OrdersSupplierComponent
   ],
   imports: [
     BrowserModule,
