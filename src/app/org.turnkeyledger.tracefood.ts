@@ -61,7 +61,6 @@ import {Event} from './org.hyperledger.composer.system';
    }
    export class MakeOrder extends Transaction {
       order: Order;
-      trace: Trace;
    }
    export class Acto extends Transaction {
       order: Order;

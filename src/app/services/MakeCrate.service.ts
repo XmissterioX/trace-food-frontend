@@ -14,7 +14,7 @@
 
 import { Injectable } from '@angular/core';
 import { DataService } from '../data.service';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { MakeCrate } from '../org.turnkeyledger.tracefood';
 import 'rxjs';
 

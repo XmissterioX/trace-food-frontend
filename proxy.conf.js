@@ -15,7 +15,7 @@
 function getTarget() {
     if (process.env.REST_SERVER_URLS) {
         const restServerURLs = JSON.parse(process.env.REST_SERVER_URLS);
-        const restServerURL = restServerURLs['tracefoodv12'];
+        const restServerURL = restServerURLs['tracefoodv13'];
         if (restServerURL) {
             return restServerURL;
         }

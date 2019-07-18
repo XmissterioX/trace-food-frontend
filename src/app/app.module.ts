@@ -37,6 +37,9 @@ import { LeftSidebarRestaurantComponent } from './components/restaurant/left-sid
 import { RestaurantDashboardComponent } from './components/restaurant/restaurant-dashboard/restaurant-dashboard.component';
 import { OrdersSupplierComponent } from './components/supplier/pages/orders-supplier/orders-supplier.component';
 import { OrderService } from './services/Order.service';
+import {PickListModule} from 'primeng/picklist';
+
+import { NewOrderSupplierComponent } from './components/supplier/pages/new-order-supplier/new-order-supplier.component';
 
 
 
@@ -66,7 +69,8 @@ import { OrderService } from './services/Order.service';
     HeaderRestaurantComponent,
     LeftSidebarRestaurantComponent,
     RestaurantDashboardComponent,
-    OrdersSupplierComponent
+    OrdersSupplierComponent,
+    NewOrderSupplierComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +78,8 @@ import { OrderService } from './services/Order.service';
     HttpClientModule,
     DataTablesModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    PickListModule
   ],
   providers: [DataService, SystemService],
   bootstrap: [AppComponent]

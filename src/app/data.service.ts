@@ -12,11 +12,14 @@
  * limitations under the License.
  */
 
+
+import {throwError as observableThrowError,  Observable } from 'rxjs';
+
+import {map, catchError} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
+
+
 
 @Injectable()
 export class DataService<Type> {
@@ -33,17 +36,17 @@ export class DataService<Type> {
 
     public getAll(ns: string): Observable<Type[]> {
         console.log('GetAll ' + ns + ' to ' + this.actionUrl + ns);
-        return this.http.get(`${this.actionUrl}${ns}`)
-          .map(this.extractData)
-          .catch(this.handleError);
+        return this.http.get(`${this.actionUrl}${ns}`).pipe(
+          map(this.extractData),
+          catchError(this.handleError),);
     }
 
     public getSingle(ns: string, id: string): Observable<Type> {
         console.log('GetSingle ' + ns);
 
-        return this.http.get(this.actionUrl + ns + '/' + id + this.resolveSuffix)
-          .map(this.extractData)
-          .catch(this.handleError);
+        return this.http.get(this.actionUrl + ns + '/' + id + this.resolveSuffix).pipe(
+          map(this.extractData),
+          catchError(this.handleError),);
     }
 
     public add(ns: string, asset: Type): Observable<Type> {
@@ -51,9 +54,9 @@ export class DataService<Type> {
         console.log('Add ' + ns);
         console.log('asset', asset);
 
-        return this.http.post(this.actionUrl + ns, asset)
-          .map(this.extractData)
-          .catch(this.handleError);
+        return this.http.post(this.actionUrl + ns, asset).pipe(
+          map(this.extractData),
+          catchError(this.handleError),);
     }
 
     public update(ns: string, id: string, itemToUpdate: Type): Observable<Type> {
@@ -61,17 +64,17 @@ export class DataService<Type> {
         console.log('what is the id?', id);
         console.log('what is the updated item?', itemToUpdate);
         console.log('what is the updated item?', JSON.stringify(itemToUpdate));
-        return this.http.put(`${this.actionUrl}${ns}/${id}`, itemToUpdate)
-          .map(this.extractData)
-          .catch(this.handleError);
+        return this.http.put(`${this.actionUrl}${ns}/${id}`, itemToUpdate).pipe(
+          map(this.extractData),
+          catchError(this.handleError),);
     }
 
     public delete(ns: string, id: string): Observable<Type> {
         console.log('Delete ' + ns);
 
-        return this.http.delete(this.actionUrl + ns + '/' + id)
-          .map(this.extractData)
-          .catch(this.handleError);
+        return this.http.delete(this.actionUrl + ns + '/' + id).pipe(
+          map(this.extractData),
+          catchError(this.handleError),);
     }
 
     private handleError(error: any): Observable<string> {
@@ -80,7 +83,7 @@ export class DataService<Type> {
         const errMsg = (error.message) ? error.message :
           error.status ? `${error.status} - ${error.statusText}` : 'Server error';
         console.error(errMsg); // log to console instead
-        return Observable.throw(errMsg);
+        return observableThrowError(errMsg);
     }
 
     private extractData(res: Response): any {

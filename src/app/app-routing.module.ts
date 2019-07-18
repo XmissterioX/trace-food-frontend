@@ -11,6 +11,7 @@ import { SupplierComponent } from './components/supplier/supplier.component';
 import { SupplierDashboardComponent } from './components/supplier/pages/supplier-dashboard/supplier-dashboard.component';
 import { RestaurantComponent } from './components/restaurant/restaurant.component';
 import { OrdersSupplierComponent } from './components/supplier/pages/orders-supplier/orders-supplier.component';
+import { NewOrderSupplierComponent } from './components/supplier/pages/new-order-supplier/new-order-supplier.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,10 @@ const routes: Routes = [
       {
         path: 'orders-supplier',
         component: OrdersSupplierComponent
+      },
+      {
+        path: 'new-order-supplier',
+        component: NewOrderSupplierComponent
       }
     ]
   },
