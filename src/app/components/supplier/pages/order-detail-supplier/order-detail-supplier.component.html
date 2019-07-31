@@ -1,0 +1,217 @@
+
+
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      Asset
+      <small>order</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li>
+        <a href="#">
+          <i class="fa fa-cogs"></i> Transactions</a>
+      </li>
+      <li class="active">Order details</li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+
+      <div class="box">
+          <div class="box-header">
+            <h3 class="box-title">Order details</h3>
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body">
+              <div class="container">
+                  <div class="row">
+                    <div class="ui-g-12 ui-md-4">
+                      <div class="ui-inputgroup">
+                        <b>Order id:  &nbsp; </b>
+                        <i> 75</i>
+                      </div>
+                      <div class="ui-inputgroup">
+                        <b>commodityName:  &nbsp; </b>
+                        <i> 75</i>
+                      </div>
+                      <div class="ui-inputgroup">
+                        <b>commodityQuantity:  &nbsp; </b>
+                        <i> 75</i>
+                      </div>
+                      <div class="ui-inputgroup">
+                        <b>orderStatus:  &nbsp; </b>
+                        <i> 75</i>
+                      </div>
+                      <div class="ui-inputgroup">
+                        <b>restaurant:  &nbsp; </b>
+                        <i> 75</i>
+                      </div>
+                  </div>
+
+                  <div class="ui-g-12 ui-md-4">
+                    <div class="ui-inputgroup">
+                      <b>Order id:  &nbsp; </b>
+                      <i> 75</i>
+                    </div>
+                </div>
+
+
+        </div>
+        <p-dataView #dv [value]="crates" [paginator]="true" [rows]="20" paginatorPosition="both" filterBy="crateId"
+        [sortField]="sortField" [sortOrder]="sortOrder">
+        <p-header>
+            <div class="ui-helper-clearfix">
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-4">
+                        <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By" (onChange)="onSortChange($event)" [style]="{'min-width':'140px'}"></p-dropdown>
+                    </div>
+                    <div class="ui-g-6 ui-md-4 filter-container">
+                        <div style="position:relative">
+                            <input type="search" pInputText placeholder="Search by id" (keyup)="dv.filter($event.target.value)">
+                        </div>
+                    </div>
+                    <div class="ui-g-6 ui-md-4" style="text-align:right">
+                        <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                    </div>
+                </div>
+            </div>
+        </p-header>
+        <ng-template let-crate pTemplate="listItem">
+            <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
+                <div class="ui-g-12 ui-md-3" style="text-align:center">
+                    <img src="http://www.clker.com/cliparts/6/4/3/d/1197099982421975713johnny_automatic_bushel_tomato_crate.svg.med.png" height=100 width=100> 
+                </div>
+                <div class="ui-g-12 ui-md-8 car-details">
+                    <div class="ui-g">
+                        <div class="ui-g-2 ui-sm-6">Crate ID: </div>
+                        <div class="ui-g-10 ui-sm-6"><b>{{crate.crateId}}</b></div>
+    
+                        <div class="ui-g-2 ui-sm-6">Name: </div>
+                        <div class="ui-g-10 ui-sm-6"><b>{{crate.name}}</b></div>
+    
+                        <div class="ui-g-2 ui-sm-6">Description: </div>
+                        <div class="ui-g-10 ui-sm-6"><b>{{crate.description}}</b></div>
+    
+          
+                    </div>
+                </div>
+                <div class="ui-g-12 ui-md-1 search-icon">
+                    <button pButton type="button" class="btn btn-primary" (click)="selectCrate($event, crate)"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template let-crate pTemplate="gridItem">
+            <div style="padding:.5em" class="ui-g-12 ui-md-3">
+                <p-panel [header]="crate.crateId" [style]="{'text-align':'center'}">
+                    <img src="http://www.clker.com/cliparts/6/4/3/d/1197099982421975713johnny_automatic_bushel_tomato_crate.svg.med.png" width="50" height=50>
+                    <div class="crate-detail">Crate ID: {{crate.crateId}}</div>
+                    <hr class="ui-widget-content" style="border-top:0">
+                    <button pButton type="button" class="btn btn-primary" (click)="selectCrate($event, crate)"><i class="fa fa-search"></i></button>
+                </p-panel>
+            </div>
+        </ng-template>
+    </p-dataView>
+    
+    <p-dialog header="Crate Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '225px'}"  (onAfterHide)="onDialogHide()">
+        <div class="ui-g" *ngIf="selectedCrate">
+            <div class="ui-g-12" style="text-align:center">
+                <img src="http://www.clker.com/cliparts/6/4/3/d/1197099982421975713johnny_automatic_bushel_tomato_crate.svg.med.png" width=50 height=50>
+            </div>
+            <div class="ui-g-4">Crate ID: </div>
+            <div class="ui-g-8">{{selectedCrate.crateId}}</div>
+    
+            <div class="ui-g-4">Name: </div>
+            <div class="ui-g-8">{{selectedCrate.name}}</div>
+    
+            <div class="ui-g-4">Description: </div>
+            <div class="ui-g-8">{{selectedCrate.description}}</div>
+  
+        </div>
+    </p-dialog>
+
+    <p-dataView #dv [value]="crates" [paginator]="true" [rows]="20" paginatorPosition="both" filterBy="crateId"
+        [sortField]="sortField" [sortOrder]="sortOrder">
+        <p-header>
+            <div class="ui-helper-clearfix">
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-4">
+                        <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By" (onChange)="onSortChange($event)" [style]="{'min-width':'140px'}"></p-dropdown>
+                    </div>
+                    <div class="ui-g-6 ui-md-4 filter-container">
+                        <div style="position:relative">
+                            <input type="search" pInputText placeholder="Search by id" (keyup)="dv.filter($event.target.value)">
+                        </div>
+                    </div>
+                    <div class="ui-g-6 ui-md-4" style="text-align:right">
+                        <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                    </div>
+                </div>
+            </div>
+        </p-header>
+        <ng-template let-crate pTemplate="listItem">
+            <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
+                <div class="ui-g-12 ui-md-3" style="text-align:center">
+                    <img src="http://www.clker.com/cliparts/6/4/3/d/1197099982421975713johnny_automatic_bushel_tomato_crate.svg.med.png" height=100 width=100> 
+                </div>
+                <div class="ui-g-12 ui-md-8 car-details">
+                    <div class="ui-g">
+                        <div class="ui-g-2 ui-sm-6">Crate ID: </div>
+                        <div class="ui-g-10 ui-sm-6"><b>{{crate.crateId}}</b></div>
+    
+                        <div class="ui-g-2 ui-sm-6">Name: </div>
+                        <div class="ui-g-10 ui-sm-6"><b>{{crate.name}}</b></div>
+    
+                        <div class="ui-g-2 ui-sm-6">Description: </div>
+                        <div class="ui-g-10 ui-sm-6"><b>{{crate.description}}</b></div>
+    
+          
+                    </div>
+                </div>
+                <div class="ui-g-12 ui-md-1 search-icon">
+                    <button pButton type="button" class="btn btn-primary" (click)="selectCrate($event, crate)"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template let-crate pTemplate="gridItem">
+            <div style="padding:.5em" class="ui-g-12 ui-md-3">
+                <p-panel [header]="crate.crateId" [style]="{'text-align':'center'}">
+                    <img src="http://www.clker.com/cliparts/6/4/3/d/1197099982421975713johnny_automatic_bushel_tomato_crate.svg.med.png" width="50" height=50>
+                    <div class="crate-detail">Crate ID: {{crate.crateId}}</div>
+                    <hr class="ui-widget-content" style="border-top:0">
+                    <button pButton type="button" class="btn btn-primary" (click)="selectCrate($event, crate)"><i class="fa fa-search"></i></button>
+                </p-panel>
+            </div>
+        </ng-template>
+    </p-dataView>
+    
+    <p-dialog header="Crate Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [style]="{width: '225px'}"  (onAfterHide)="onDialogHide()">
+        <div class="ui-g" *ngIf="selectedCrate">
+            <div class="ui-g-12" style="text-align:center">
+                <img src="http://www.clker.com/cliparts/6/4/3/d/1197099982421975713johnny_automatic_bushel_tomato_crate.svg.med.png" width=50 height=50>
+            </div>
+            <div class="ui-g-4">Crate ID: </div>
+            <div class="ui-g-8">{{selectedCrate.crateId}}</div>
+    
+            <div class="ui-g-4">Name: </div>
+            <div class="ui-g-8">{{selectedCrate.name}}</div>
+    
+            <div class="ui-g-4">Description: </div>
+            <div class="ui-g-8">{{selectedCrate.description}}</div>
+  
+        </div>
+    </p-dialog>
+      </div>
+
+        
+         
+        </div>
+          <!-- /.box-body -->
+        </div>
+
+
+
+  </section>
+  <!-- /.content -->
+</div>

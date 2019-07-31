@@ -12,6 +12,8 @@ import { SupplierDashboardComponent } from './components/supplier/pages/supplier
 import { RestaurantComponent } from './components/restaurant/restaurant.component';
 import { OrdersSupplierComponent } from './components/supplier/pages/orders-supplier/orders-supplier.component';
 import { NewOrderSupplierComponent } from './components/supplier/pages/new-order-supplier/new-order-supplier.component';
+import { NewCrateSupplierComponent } from './components/supplier/pages/new-crate-supplier/new-crate-supplier.component';
+import { OrderDetailSupplierComponent } from './components/supplier/pages/order-detail-supplier/order-detail-supplier.component';
 
 const routes: Routes = [
   {
@@ -39,6 +41,14 @@ const routes: Routes = [
       {
         path: 'new-order-supplier',
         component: NewOrderSupplierComponent
+      },
+      {
+        path: 'new-crate-supplier',
+        component: NewCrateSupplierComponent
+      },
+      {
+        path: 'order-detail-supplier',
+        component: OrderDetailSupplierComponent
       }
     ]
   },

@@ -4,8 +4,8 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Assets
-      <small>New order</small>
+      Asset
+      <small>order</small>
     </h1>
     <ol class="breadcrumb">
       <li>
@@ -31,13 +31,13 @@
             <div class="col-lg-3 col-lg-offset-3" >
             
               <div class="form-group">
-                <label for="exampleInputEmail1">Order id</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Order id">
+                <label for="exampleInputEmail1">Order ID</label>
+                <input [(ngModel)]="orderId" name="orderId" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Order id">
                 <small id="emailHelp" class="form-text text-muted">Must be like 'C1-0x'</small>
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Commodity name</label>
-                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Commodity name">
+                <input [(ngModel)]="CommodityName" name="CommodityName" type="text" class="form-control" id="exampleInputPassword1" placeholder="Commodity name">
               </div>
               
 
@@ -45,12 +45,12 @@
           <div class="col-lg-3 ">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Commodity quantity</label>
-                  <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Commodity quantity">
+                  <input [(ngModel)]="commodityQuantity" name="commodityQuantity" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Commodity quantity">
                   <small id="emailHelp" class="form-text text-muted">Kg</small>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Restaurant</label>
-                  <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Restaurant">
+                  <label for="exampleInputPassword1">Restaurant ID</label>
+                  <input [(ngModel)]="restaurantId" name="restaurantId" type="text" class="form-control" id="exampleInputPassword1" placeholder="Restaurant ID">
                 </div>
                
              
@@ -60,16 +60,16 @@
       </div>
 
           <p-pickList [source]="list1" [target]="list2" sourceHeader="Available crates" targetHeader="Selected crates" dragdrop="true"
-          [responsive]="true" [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}" filterBy="id" 
+          [responsive]="true" [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}" filterBy="crateId" 
           sourceFilterPlaceholder="Search by crate id" targetFilterPlaceholder="Search by crate id">
-            <ng-template let-employee pTemplate="item">
+            <ng-template let-crate pTemplate="item">
               <div class="ui-helper-clearfix">
 
-                  <div style="font-size:12px;float:left;margin:5px 5px 5px 5px">{{employee.id}} - {{employee.name}} - {{employee.dept}} </div>
+                  <div style="font-size:12px;float:left;margin:5px 5px 5px 5px">crate id: {{crate.crateId}} - name:  {{crate.name}}</div>
               </div>
           </ng-template>
           </p-pickList>
-          <button type="submit" class="btn btn-primary" style="float: right">Submit</button>
+          <button type="submit" class="btn btn-primary" style="float: right" (click)="addTransaction()">Submit</button>
         </div>
           <!-- /.box-body -->
         </div>

@@ -36,7 +36,10 @@ import {Event} from './org.hyperledger.composer.system';
       crateId: string;
       name: string;
       description: string;
+      supplier: Trader;
+      restaurant: Trader;
       order: Order;
+      owned: boolean;
    }
    export abstract class Trader extends Participant {
       companyName: string;
@@ -57,7 +60,6 @@ import {Event} from './org.hyperledger.composer.system';
    }
    export class MakeCrate extends Transaction {
       crate: Crate;
-      trace: Trace;
    }
    export class MakeOrder extends Transaction {
       order: Order;
