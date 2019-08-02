@@ -20,9 +20,9 @@ export class NewCrateSupplierComponent implements OnInit {
       $class: 'org.turnkeyledger.tracefood.MakeCrate',
       'crate': {
         '$class': 'org.turnkeyledger.tracefood.Crate',
-        'crateId': '3930',
-        'name': '',
-        'description': ''
+        'crateId': '1010',
+        'name': 'crate name 1010',
+        'description': 'crate description 1010'
       }
     };
 

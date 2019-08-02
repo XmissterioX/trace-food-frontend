@@ -44,7 +44,9 @@ getUnownedCrates() {
 
 addTransaction(): Promise<any> {
   this.Transaction = {};
-
+  this.list2.forEach(element => {
+    this.cratesToAdd.push('resource:org.turnkeyledger.tracefood.Crate#' + element.crateId);
+  });
   //  this.cratesToAdd.push('resource:org.turnkeyledger.tracefood.Crate#1');
 
   console.log(this.cratesToAdd);
@@ -55,9 +57,9 @@ addTransaction(): Promise<any> {
         '$class': 'org.turnkeyledger.tracefood.Order',
         'orderId': '71',
         'commodityName': 'Banana',
-        'commodityQuantity': '200',
+        'commodityQuantity': '200' + 'Kg',
         'crates': this.cratesToAdd,
-      'restaurant': 'resource:org.turnkeyledger.tracefood.Restaurant#R1-1'
+      'restaurant': 'resource:org.turnkeyledger.tracefood.Restaurant#' + 'R1-1'
       }
     };
 

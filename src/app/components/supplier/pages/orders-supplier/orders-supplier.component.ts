@@ -3,6 +3,7 @@ import { OrderService } from 'src/app/services/Order.service';
 import { english } from './../../../../../interfaces/datatables.es';
 import { Subject } from 'rxjs';
 import { Order } from 'src/app/org.turnkeyledger.tracefood';
+import { NavigationExtras, Router, ActivatedRoute } from '@angular/router';
 declare var AdminLTE: any;
 class DataTablesResponse {
   data: any[];
@@ -27,7 +28,7 @@ private currentId;
 
 
 orders: Order[] = [];
-  constructor(public serviceOrder: OrderService) { }
+  constructor(private router: Router, private r: ActivatedRoute, public serviceOrder: OrderService) { }
 
   ngOnInit() {
     AdminLTE.init();
@@ -98,5 +99,15 @@ orders: Order[] = [];
     });
   }
 
+  public GoToRoute(route: String, order: Order) {
+    console.log('wtf' + order.orderId);
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+          OrderId: order.orderId,
+      }
+  };
+  this.router.navigate( [ '../order-detail-supplier'], { relativeTo: this.r, queryParams: { orderId: order.orderId } } );
+
+  }
 
 }

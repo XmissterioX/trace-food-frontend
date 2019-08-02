@@ -49,7 +49,11 @@ import {DialogModule} from 'primeng/dialog';
 import {DataGridModule} from 'primeng/datagrid';
 import {PanelModule} from 'primeng/panel';
 import {DropdownModule} from 'primeng/dropdown';
+import { TableModule } from 'primeng/table';
+import { TooltipModule } from 'primeng/tooltip';
+import { TreeTableModule } from 'primeng/treetable';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DataTableModule } from 'primeng/datatable';
 
 @NgModule({
   declarations: [
@@ -95,7 +99,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DataGridModule,
     PanelModule,
     DropdownModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    TableModule,
+    TooltipModule,
+    TreeTableModule,
+    DataTableModule
   ],
   providers: [DataService, SystemService, QueriesService],
   bootstrap: [AppComponent]

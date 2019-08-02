@@ -87,7 +87,8 @@
             <td>{{ order.commodityName }}</td>
             <td>{{ order.commodityQuantity }}</td>
             <td>{{ order.orderStatus }}</td>
-            <td><i class="fa fa-info-circle" style="color: #3e8ef7; padding-right: 5%"></i> <a><i class="glyphicon-glyphicon-eye-open" style="color: #3e8ef7"></i></a></td> 
+            <td> <button (click)="GoToRoute('order-detail-supplier', order)" >test</button>
+              <i class="fa fa-info-circle" style="color: #3e8ef7; padding-right: 5%"></i> <a><i class="glyphicon-glyphicon-eye-open" style="color: #3e8ef7" (click)="GoToRoute('order-detail-supplier', order.orderId)"></i></a></td> 
             
           </tr>
         </tbody>

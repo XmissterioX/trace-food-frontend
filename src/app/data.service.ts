@@ -29,6 +29,7 @@ export class DataService<Type> {
         this.headers = new Headers();
         this.headers.append('Content-Type', 'application/json');
         this.headers.append('Accept', 'application/json');
+        this.headers.append('filter', '{"include":"resolve"}');
     }
 
     public getAll(ns: string): Observable<Type[]> {
@@ -41,7 +42,7 @@ export class DataService<Type> {
     public getSingle(ns: string, id: string): Observable<Type> {
         console.log('GetSingle ' + ns);
 
-        return this.http.get(this.actionUrl + ns + '/' + id + this.resolveSuffix)
+        return this.http.get(this.actionUrl + ns + '/' + id + '?filter=%7B%22include%22%3A%22resolve%22%7D')
           .map(this.extractData)
           .catch(this.handleError);
     }
