@@ -89,12 +89,12 @@
             <td>{{ order.orderId }}</td>
             <td>{{ order.commodityName }}</td>
             <td>{{ order.commodityQuantity }}</td>
-            <td>{{ order.orderStatus }}  <a *ngIf="order.orderStatus != 'DELIVERED'" (click)="updateOrder(order.orderId)"><i class="fa fa-angle-double-right" style="color: #3e8ef7; margin-left: 5%"></i></a></td>
+            <td>{{ order.orderStatus }}  </td>
             <td> 
-             <a (click)="GoToRoute('order-detail-supplier', order)"> 
-               <i class="fa fa-eye" style="color: #3e8ef7; padding-right: 5%"></i>
-               </a> 
-              </td> 
+              <a (click)="GoToRoute('order-detail-restaurant', order)"> 
+                <i class="fa fa-eye" style="color: #3e8ef7; padding-right: 5%"></i>
+                </a> 
+               </td> 
             
           </tr>
         </tbody>

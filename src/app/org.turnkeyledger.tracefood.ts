@@ -12,9 +12,8 @@ import {Event} from './org.hyperledger.composer.system';
    }
    export enum OrderStatus {
       INITIATED,
-      DELIVERING,
+      PROCESSING,
       DELIVERED,
-      CONFIRMED,
    }
    export class Address {
       city: string;
@@ -81,9 +80,11 @@ import {Event} from './org.hyperledger.composer.system';
    }
    export class UpdateOrderState extends Transaction {
       orderId: string;
-      orderStatus: OrderStatus;
    }
    export class ConfirmOrder extends Transaction {
       orderId: string;
+   }
+   export class TraceNotification extends Event {
+      order: Order;
    }
 // }

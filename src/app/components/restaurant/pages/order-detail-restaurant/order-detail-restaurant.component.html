@@ -44,10 +44,6 @@
                         <b>Order status:  &nbsp; </b>
                         <i> {{currentOrder?.orderStatus}}</i>
                       </div>
-                      <div class="ui-inputgroup">
-                        <b>Restaurant:  &nbsp; </b>
-                        <i> {{currentOrderResto}}</i>
-                      </div>
                   </div>
 
                 <!--  <div class="ui-g-12 ui-md-4">
@@ -136,45 +132,8 @@
     <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
         <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
         <input style="resize: both" #gb type="text" pInputText size="50" placeholder="Global Filter">
-        <button type="button" class="btn btn-success ml-10" style="margin-left: 0.5%" (click)="showDialog()" pButton icon="pi pi-info-circle" label="Show"><i class="fa fa-plus"></i></button>
     </div>
-    <p-dialog header="New trace" [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '350px', minWidth: '200px'}" [minY]="70" 
-        [maximizable]="true" [baseZIndex]="10000">
-        <h3 class="first">New trace</h3>
-        <div class="ui-inputgroup">
-          <span class="ui-inputgroup-addon">Action</span>
-          <input type="text" pInputText placeholder="action">      
-      </div>
-      <div class="ui-inputgroup">
-        <span class="ui-inputgroup-addon">Description</span>
-        <input type="text" pInputText placeholder="description">      
-    </div>
-    <div class="ui-inputgroup">
-      <span class="ui-inputgroup-addon">Campany involved</span>
-      <input type="text" pInputText placeholder="campany involved">      
-  </div>
-      <h4>Location</h4>
-      <div class="ui-inputgroup">
-        <span class="ui-inputgroup-addon">City</span>
-        <input type="text" pInputText placeholder="city">      
-    </div>
-    <div class="ui-inputgroup">
-      <span class="ui-inputgroup-addon">State</span>
-      <input type="text" pInputText placeholder="state">      
-  </div>
-  <div class="ui-inputgroup">
-    <span class="ui-inputgroup-addon">Country</span>
-    <input type="text" pInputText placeholder="country">      
-</div>
-<div class="ui-inputgroup">
-  <span class="ui-inputgroup-addon">Postal code</span>
-  <input type="text" pInputText placeholder="postal code">      
-</div>
-        <p-footer>
-            <button type="button" class="btn btn-primary" pButton icon="pi pi-check" (click)="display=false; addTraceOrder()" label="Yes"><i class="fa fa-check"></i>Yes</button>
-            <button type="button" class="btn btn-danger" pButton icon="pi pi-close" (click)="display=false" label="No" ><i class="fa fa-close"></i>close</button>
-        </p-footer>
-</p-dialog>
+    
 
 
     <p-dataTable [value]="currentOrderTraces" [rows]="10" [paginator]="true" [globalFilter]="gb" #dt>

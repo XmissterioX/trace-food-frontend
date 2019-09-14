@@ -1,6 +1,6 @@
 
 
-<div class="content-wrapper">
+<div class="content-wrapper" >
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
@@ -17,9 +17,9 @@
   </section>
 
   <!-- Main content -->
-  <section class="content">
+  <section class="content" >
 
-      <div class="box">
+      <div class="box" >
           <div class="box-header">
             <h3 class="box-title">New crate</h3>
           </div>
@@ -30,16 +30,16 @@
               <form>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Crate ID</label>
-                  <input  name="crateId" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Crate ID">
-                  <small id="emailHelp" class="form-text text-muted">Must be like 'C1-0x'</small>
+                  <input [(ngModel)]="crateID" name="crateId" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Crate ID">
+                  <small id="emailHelp" class="form-text text-muted">Must start with 'C1-'</small>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Name</label>
-                  <input  name="CommodityName" type="text" class="form-control" id="exampleInputPassword1" placeholder="Name">
+                  <input [(ngModel)]="name" name="CommodityName" type="text" class="form-control" id="exampleInputPassword1" placeholder="Name">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Description</label>
-                  <input  name="CommodityName" type="text" class="form-control" id="exampleInputPassword1" placeholder="Description">
+                  <input [(ngModel)]="description"  row="5" name="CommodityName" type="text" class="form-control" id="exampleInputPassword1" placeholder="Description">
                 </div>
    
           </form>
@@ -58,3 +58,7 @@
   </section>
   <!-- /.content -->
 </div>
+
+<div class="loading-indicator" *ngIf="loading">
+ <p-progressSpinner></p-progressSpinner>
+ </div>

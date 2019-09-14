@@ -10,19 +10,25 @@ import { MakeCrateService } from 'src/app/services/MakeCrate.service';
 export class NewCrateSupplierComponent implements OnInit {
   private Transaction;
   private errorMessage;
+  crateID = '';
+  name = '';
+  description = '';
+  loading = false;
   constructor(private serviceMakeCrate: MakeCrateService) { }
 
   ngOnInit() {
   }
 
   makeCrate(form: any): Promise<any> {
+    this.loading = true;
+    console.log(this.crateID + ' ' + this.name + ' ' + this.description);
     this.Transaction = {
       $class: 'org.turnkeyledger.tracefood.MakeCrate',
       'crate': {
         '$class': 'org.turnkeyledger.tracefood.Crate',
-        'crateId': '1010',
-        'name': 'crate name 1010',
-        'description': 'crate description 1010'
+        'crateId': this.crateID,
+        'name': this.name,
+        'description': this.description
       }
     };
 
@@ -30,14 +36,17 @@ export class NewCrateSupplierComponent implements OnInit {
     return this.serviceMakeCrate.addTransaction(this.Transaction)
     .toPromise()
     .then(() => {
+      this.loading = false;
       this.errorMessage = null;
     })
     .catch((error) => {
+      this.loading = false;
       if (error === 'Server error') {
         this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
       } else {
         this.errorMessage = error;
       }
+      alert(this.errorMessage);
     });
   }
 

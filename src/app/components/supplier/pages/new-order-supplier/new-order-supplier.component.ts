@@ -15,15 +15,20 @@ import { Crate } from './crate';
 export class NewOrderSupplierComponent implements OnInit {
 
   // tslint:disable-next-line:member-ordering
-  orderId: string;
-  CommodityName: String;
-  commodityQuantity: String;
-  restaurantId: String;
+
+
   private Transaction;
   public list1: Crate[];
   public list2: Crate[];
   cratesToAdd: String[];
   data: any;
+
+  orderID = '';
+  commodityName = '';
+  commodityQuantity = '';
+  restaurantID = '';
+
+  loading = false;
   private errorMessage;
   constructor(private queries: QueriesService, private serviceMakeOrder: MakeOrderService) { }
 
@@ -33,16 +38,20 @@ export class NewOrderSupplierComponent implements OnInit {
     this.getUnownedCrates();
   }
 getUnownedCrates() {
+  this.loading = true;
   this.queries.getUnownedCrates().subscribe(res => {
+    this.loading = false;
  this.list1 = res;
  console.log(this.list1);
   },
   err => {
+    this.loading = false;
   console.log(err);
   });
 }
 
 addTransaction(): Promise<any> {
+  this.loading = true;
   this.Transaction = {};
   this.list2.forEach(element => {
     this.cratesToAdd.push('resource:org.turnkeyledger.tracefood.Crate#' + element.crateId);
@@ -55,11 +64,11 @@ addTransaction(): Promise<any> {
       $class: 'org.turnkeyledger.tracefood.MakeOrder',
       'order': {
         '$class': 'org.turnkeyledger.tracefood.Order',
-        'orderId': '71',
-        'commodityName': 'Banana',
-        'commodityQuantity': '200' + 'Kg',
+        'orderId': this.orderID,
+        'commodityName': this.commodityName,
+        'commodityQuantity': this.commodityQuantity + ' Kg',
         'crates': this.cratesToAdd,
-      'restaurant': 'resource:org.turnkeyledger.tracefood.Restaurant#' + 'R1-1'
+      'restaurant': 'resource:org.turnkeyledger.tracefood.Restaurant#' + this.restaurantID
       }
     };
 
@@ -68,9 +77,11 @@ addTransaction(): Promise<any> {
   return this.serviceMakeOrder.addTransaction(this.Transaction)
   .toPromise()
   .then(() => {
+    this.loading = false;
     this.errorMessage = null;
   })
   .catch((error) => {
+    this.loading = false;
     if (error === 'Server error') {
       this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
     } else {

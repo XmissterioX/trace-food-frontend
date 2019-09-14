@@ -1,19 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from 'src/app/services/Order.service';
-// import { Crate } from '../new-order-supplier/crate';
+
 import { SelectItem } from 'primeng/components/common/selectitem';
 import { ActivatedRoute } from '@angular/router';
 import { Order, Trace, Crate } from 'src/app/org.turnkeyledger.tracefood';
-import { AddTraceOrderService } from 'src/app/services/AddTraceOrder.service';
 
 
 @Component({
-  selector: 'app-order-detail-supplier',
-  templateUrl: './order-detail-supplier.component.html',
-  styleUrls: ['./order-detail-supplier.component.css'],
-  providers: [OrderService, AddTraceOrderService]
+  selector: 'app-order-detail-restaurant',
+  templateUrl: './order-detail-restaurant.component.html',
+  styleUrls: ['./order-detail-restaurant.component.css']
 })
-export class OrderDetailSupplierComponent implements OnInit {
+export class OrderDetailRestaurantComponent implements OnInit {
   errorMessage: any;
   public crates: Crate[];
   selectedCrate: Crate;
@@ -37,30 +35,21 @@ export class OrderDetailSupplierComponent implements OnInit {
 
   loading = false;
   private Transaction;
-  constructor(private route: ActivatedRoute, public serviceOrder: OrderService,
-     public serviceAddTraceOrder: AddTraceOrderService) {
+  constructor(private route: ActivatedRoute, public serviceOrder: OrderService) {
     this.route.queryParams.subscribe(params => {
-        console.log(params['orderId']);
-        if (params['orderId'] != null) {
-          this.getOrderById(params['orderId']);
-        }
-    });
-  }
+    console.log(params['orderId']);
+    if (params['orderId'] != null) {
+      this.getOrderById(params['orderId']);
+    }
+});
+}
 
   ngOnInit() {
     this.sortOptions = [
       {label: 'Crate ID', value: 'crateId'}
   ];
     this.crates = [];
-  /*  this.crates.push(new Crate('1', 'aa', 'ee'));
-    this.crates.push(new Crate('3', 'cc', 'tt'));
-    this.crates.push(new Crate('2', 'bb', 'rr'));*/
   }
-
-  showDialog() {
-    this.display = true;
-}
-
 
   selectCrate(event: Event, crate: Crate) {
     this.selectedCrate = crate;
@@ -84,42 +73,7 @@ onDialogHide() {
   this.selectedCrate = null;
 }
 
-addTraceOrder(): Promise<any> {
-  this.loading = true;
-  this.Transaction = {
-    $class: 'org.turnkeyledger.tracefood.AddTraceOrder',
-    'orderId': '71',
-    'location': {
-      '$class': 'org.turnkeyledger.tracefood.Address',
-      'city': 'cityy',
-      'state': 'statee',
-      'country': 'countryy',
-      'postalCode': 'postal codee'
-    },
-    'action': 'actionn',
-    'description': 'descriptionn',
-    'campanyInvolved': 'company involvedd',
-  };
-
-
-  return this.serviceAddTraceOrder.addTransaction(this.Transaction)
-  .toPromise()
-  .then(() => {
-    this.loading = false;
-    this.errorMessage = null;
-  })
-  .catch((error) => {
-    this.loading = false;
-    if (error === 'Server error') {
-      this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
-    } else {
-      this.errorMessage = error;
-    }
-  });
-}
-
-
-  getOrderById(id: any): Promise<any> {
+getOrderById(id: any): Promise<any> {
 this.loading = true;
     return this.serviceOrder.getAsset(id)
     .toPromise()

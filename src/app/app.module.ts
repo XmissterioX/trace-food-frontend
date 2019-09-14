@@ -54,7 +54,13 @@ import { TooltipModule } from 'primeng/tooltip';
 import { TreeTableModule } from 'primeng/treetable';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DataTableModule } from 'primeng/datatable';
-
+import { CratesSupplierComponent } from './components/supplier/pages/crates-supplier/crates-supplier.component';
+import { CrateService } from './services/Crate.service';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { UpdateOrderStateService } from './services/UpdateOrderState.service';
+import { OrdersRestaurantComponent } from './components/restaurant/pages/orders-restaurant/orders-restaurant.component';
+import { CratesRestaurantComponent } from './components/restaurant/pages/crates-restaurant/crates-restaurant.component';
+import { OrderDetailRestaurantComponent } from './components/restaurant/pages/order-detail-restaurant/order-detail-restaurant.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,7 +90,11 @@ import { DataTableModule } from 'primeng/datatable';
     OrdersSupplierComponent,
     NewOrderSupplierComponent,
     NewCrateSupplierComponent,
-    OrderDetailSupplierComponent
+    OrderDetailSupplierComponent,
+    CratesSupplierComponent,
+    OrdersRestaurantComponent,
+    CratesRestaurantComponent,
+    OrderDetailRestaurantComponent
   ],
   imports: [
     BrowserModule,
@@ -103,9 +113,10 @@ import { DataTableModule } from 'primeng/datatable';
     TableModule,
     TooltipModule,
     TreeTableModule,
-    DataTableModule
+    DataTableModule,
+    ProgressSpinnerModule
   ],
-  providers: [DataService, SystemService, QueriesService],
+  providers: [DataService, SystemService, QueriesService, CrateService, UpdateOrderStateService, OrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -11,6 +11,7 @@ export class LogincardComponent implements OnInit {
   selectedFile = null;
   hidden = true;
   name: string;
+  loading = false;
   private errorMessage;
   constructor(private systemService: SystemService,
     private route: Router) {
@@ -28,16 +29,16 @@ export class LogincardComponent implements OnInit {
   onUpload() {
 
     if (this.name.length > 0 && this.selectedFile != null) {
-        // this.loading = true;
+        this.loading = true;
   this.systemService.uploadCard(this.selectedFile, this.name).subscribe(res => {
-    // this.loading = false;
+     this.loading = false;
     console.log(res);
     console.log(res.status + res.statusText);
    this.ping();
 
   },
   err => {console.log(err);
-  //  this.loading = false;
+   this.loading = false;
     });
       } else {
        console.log('enter your password');
@@ -45,8 +46,10 @@ export class LogincardComponent implements OnInit {
   }
 
   ping() {
+    this.loading = true;
     this.systemService.ping().subscribe(
       res => {
+        this.loading = false;
         console.log(res);
         let str = res['participant'];
         console.log(str);
@@ -59,6 +62,7 @@ export class LogincardComponent implements OnInit {
         } else {console.log(false); }
       },
       err => {console.log(err);
+        this.loading = false;
         if (err.status === 401) {
           this.errorMessage = 'Authorization Required';
         } else if (err.status === 500) {

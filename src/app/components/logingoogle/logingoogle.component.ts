@@ -10,7 +10,7 @@ declare const gapi: any;
 export class LogingoogleComponent implements OnInit {
 
   private errorMessage;
-
+ loading = false;
   constructor(private element: ElementRef,
     private systemService: SystemService,
     private route: Router) {
@@ -35,6 +35,7 @@ export class LogingoogleComponent implements OnInit {
     });
   }
   public attachSignin(element) {
+    this.loading = true;
     this.auth2.attachClickHandler(element, {},
       (googleUser) => {
         console.log('test');
@@ -44,10 +45,12 @@ export class LogingoogleComponent implements OnInit {
         console.log('Name: ' + profile.getName());
         console.log('Image URL: ' + profile.getImageUrl());
         console.log('Email: ' + profile.getEmail());
+        this.loading = false;
         // YOUR CODE HERE
         window.location.href = 'http://localhost:3000/auth/google';
       }, (error) => {
       //  alert(JSON.stringify(error, undefined, 2));
+      this.loading = false;
       alert('You must choose an account in order proceed');
       });
   }
@@ -106,6 +109,7 @@ export class LogingoogleComponent implements OnInit {
   }
 
   ping() {
+    this.loading = true;
     this.systemService.ping().subscribe(
       res => {
         console.log(res);
@@ -118,8 +122,9 @@ export class LogingoogleComponent implements OnInit {
         } else if (str.startsWith('R1')) {
           this.route.navigate(['/restaurant']);
         } else {console.log(false); }
-      },
+     this.loading = false; },
       err => {console.log(err);
+        this.loading = false;
         if (err.status === 401) {
           this.errorMessage = 'Authorization Required';
         } else if (err.status === 500) {
